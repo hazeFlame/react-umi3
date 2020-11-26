@@ -1,0 +1,144 @@
+@import './var.less';
+
+.ant-btn-group > .ant-btn,
+.ant-btn-group > span > .ant-btn {
+  line-height: inherit;
+}
+
+
+.ant-btn-dangerous.ant-btn-primary {
+  color: #fff;
+  background: #CB1313;
+  border-color: #CB1313;
+
+  &:hover {
+    background: #EE6060;
+    border-color: #EE6060;
+  }
+
+  &:active {
+    background: #B21E1E;
+    border-color: #B21E1E;
+  }
+}
+
+
+.ant-btn {
+  &.ant-btn-link {
+    color: @primary-color;
+    border-color: transparent !important;
+    background-color: transparent !important;
+    &,
+    &:hover,
+    &:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+    &.ant-btn-clicked:after {
+      border-color: transparent;
+    }
+  }
+
+  &-danger {
+    color: white;
+    background-color: @error-color;
+    border-color: @error-color;
+  }
+
+  &-info {
+    border-color: @info-color;
+    color: #fff;
+    background-color: @info-color;
+    &:hover {
+      color: #fff;
+      border-color: lighten(@info-color, 5%);
+      background-color: lighten(@info-color, 5%);
+    }
+    &.ant-btn-clicked:after {
+      border-color: @info-color;
+    }
+  }
+
+  &-warning {
+    border-color: @warning-color;
+    color: #fff;
+    background-color: @warning-color;
+    &:hover {
+      color: #fff;
+      border-color: lighten(@warning-color, 5%);
+      background-color: lighten(@warning-color, 5%);
+    }
+    &.ant-btn-clicked:after {
+      border-color: @warning-color;
+    }
+  }
+
+  // 无圆角
+  &.rect {
+    border-radius: 0;
+  }
+  // 圆角
+  &.round {
+    border-radius: 30px;
+  }
+
+  // Outline
+  &-outline,
+  &.outline {
+    border-color: @primary-color;
+    color: @primary-color;
+    background-color: transparent;
+    &:hover {
+      color: darken(@primary-color, 5%);
+      border-color: darken(@primary-color, 5%);
+    }
+    &[disabled] {
+      color: #ccc !important;
+    }
+  }
+
+  &-warning.outline,
+  &-warning.ant-btn-background-ghost {
+    border-color: @warning-color;
+    color: @warning-color;
+    background-color: transparent;
+    &:hover {
+      border-color: darken(@warning-color, 5%);
+      color: darken(@warning-color, 5%);
+    }
+  }
+
+  &-info.outline {
+    border-color: @info-color;
+    color: @info-color;
+    background-color: transparent;
+    &:hover {
+      border-color: darken(@info-color, 5%);
+      color: darken(@info-color, 5%);
+    }
+  }
+
+  &-danger.outline {
+    border-color: @error-color;
+    color: @error-color;
+    background-color: transparent;
+    &:hover {
+      border-color: darken(@error-color, 5%);
+      color: darken(@error-color, 5%);
+    }
+  }
+}
+
+.btn-basic {
+  display: inline-block;
+  padding: 2px 8px;
+  text-align: center;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.btn-basic:hover {
+  color: #fff;
+}

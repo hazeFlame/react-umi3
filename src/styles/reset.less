@@ -1,0 +1,210 @@
+html,
+body,
+:global(#root) {
+  height: 100vh;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: @text-color;
+  background: #ffffff;
+  cursor: default;
+}
+
+textarea,
+input {
+  outline: 0;
+  &:focus {
+    box-shadow: 0 0 0 2px fade(@primary-color, 20%);
+  }
+}
+
+.hide {
+  opacity: 0;
+  display: none !important;
+}
+.hidden {
+  visibility: hidden;
+}
+.pointer {
+  cursor: pointer !important;
+}
+.no-pointer {
+  cursor: default !important;
+}
+.no-border {
+  border: none !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+p {
+  margin-bottom: 0;
+}
+
+.ant-pro-table-search {
+  padding: 0 !important;
+}
+// antd
+// tag
+.ant-tag {
+  white-space: normal;
+  word-break: break-all;
+}
+.ant-select-selection--multiple > ul > li,
+.ant-select-selection--multiple .ant-select-selection__rendered > ul > li {
+  height: auto;
+  word-break: break-word;
+  white-space: normal;
+}
+.ant-select-selection--multiple .ant-select-selection__choice__content {
+  white-space: normal;
+}
+// table
+.ant-table-tbody > tr > td {
+  transition: background-color 200ms;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: @primary-color !important;
+  a {
+    color: white;
+    &:hover {
+      color: #e9e9d0;
+    }
+  }
+}
+
+.ant-form-item-label {
+  overflow: initial !important;
+}
+.ant-form-item-with-help {
+  margin-bottom: 0 !important;
+}
+.ant-form-item-label {
+  // line-height: 25px !important;
+  label {
+    white-space: pre-wrap;
+  }
+}
+
+.ant-form-item-explain, .ant-form-item-extra {
+  margin-top: 0 !important;
+  margin-bottom: 0;
+}
+.ant-tag {
+  &.ant-tag-green {
+    color: @primary-color;
+    background: #f2f8f5;
+    border-color: #f2f8f5;
+    cursor: default;
+    &:hover {
+      background: darken(#f2f8f5, 5%);
+      border-color: darken(#f2f8f5, 5%);
+    }
+  }
+}
+
+.ant-tabs.flex {
+  .ant-tabs-nav {
+    display: flex;
+    width: 100%;
+    font-size: 16px;
+    justify-content: flex-start;
+  }
+  .ant-tabs-tab {
+    flex: 1;
+    text-align: center;
+    min-width: 120px;
+    // .ellipsis();
+  }
+}
+
+.ant-radio,
+.ant-checkbox {
+  vertical-align: middle !important;
+}
+// .ant-radio-group {
+//   display: flex !important;
+// }
+// .ant-radio-wrapper {
+//   align-items: center !important;
+// }
+
+// modal
+.ant-modal-wrap {
+  z-index: 1030;
+}
+.ant-modal-mask {
+  z-index: 1030;
+}
+
+
+.ant-modal-title {
+  font-weight: 600;
+}
+.ant-message {
+  z-index: 1031;
+}
+
+// select
+.ant-select-search__field:focus {
+  box-shadow: none;
+}
+// tooltip
+.ant-tooltip {
+  max-width: 360px;
+}
+.ant-tooltip-inner {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+// danger
+.danger {
+  .ant-btn {
+    &:hover {
+      border-color: @error-color;
+      color: @error-color;
+    }
+    &.ant-btn-primary {
+      background-color: @error-color;
+      border-color: @error-color;
+      &:hover {
+        background-color: darken(@error-color, 5%);
+        border-color: darken(@error-color, 5%);
+        color: white;
+      }
+    }
+  }
+  .ant-popover-message > .anticon {
+    color: @error-color;
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .ant-confirm-body > .anticon {
+    color: @error-color;
+  }
+}
+// animation
+.anmationLoading {
+  &.anticon-spin:before {
+    animation: loadingCircle 600ms infinite ease-in-out;
+  }
+}

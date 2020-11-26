@@ -1,0 +1,159 @@
+@import './var.less';
+
+.primary-color {
+  color: @primary-color;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.t-left {
+  text-align: left;
+}
+
+.t-center {
+  text-align: center !important;
+}
+
+.t-middle {
+  vertical-align: middle;
+}
+
+.t-top {
+  vertical-align: top;
+}
+
+.t-bottom {
+  vertical-align: bottom;
+}
+
+.t-baseline {
+  vertical-align: baseline;
+}
+
+.t-right {
+  text-align: right !important;
+}
+
+.t-justify {
+  text-align: justify;
+}
+
+.round-5 {
+  border-radius: 5px;
+}
+
+.round-10 {
+  border-radius: 10px;
+}
+
+.p-a-0 {
+  padding: 0 !important;
+}
+
+.m-a-0 {
+  margin: 0 !important;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.generate-layout();
+.generate-layout2();
+
+.padding (@n, @v) {
+  .p-l-@{n} {
+    padding-left: @v !important;
+  }
+  .p-t-@{n} {
+    padding-top: @v !important;
+  }
+  .p-r-@{n} {
+    padding-right: @v !important;
+  }
+  .p-b-@{n} {
+    padding-bottom: @v !important;
+  }
+  .p-x-@{n} {
+    padding-left: @v !important;
+    padding-right: @v !important;
+  }
+  .p-y-@{n} {
+    padding-top: @v !important;
+    padding-bottom: @v !important;
+  }
+  .p-a-@{n} {
+    padding: @v !important;
+  }
+}
+
+.margin(@n, @v, @tail: ~'') {
+  //margin
+  .m-l-@{n}@{tail} {
+    margin-left: @v;
+  }
+  .m-t-@{n}@{tail} {
+    margin-top: @v;
+  }
+  .m-r-@{n}@{tail} {
+    margin-right: @v;
+  }
+  .m-b-@{n}@{tail} {
+    margin-bottom: @v;
+  }
+  .m-x-@{n}@{tail} {
+    margin-left: @v;
+    margin-right: @v;
+  }
+  .m-y-@{n}@{tail} {
+    margin-top: @v;
+    margin-bottom: @v;
+  }
+  .m-a-@{n}@{tail} {
+    margin: @v;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.generate-layout(@m: 20, @i: 1) when (@i =< @m) {
+  @v: 5px * @i;
+  @n: @i*5;
+  .padding(@n, @v);
+  .margin(@n, @v);
+  .margin(@n, -1 * @v, ~'-n');
+  .generate-layout(@m, (@i + 1));
+}
+
+.generate-layout2(@m: 4, @i: 0) when (@i =< @m) {
+  @v: 1px * @i;
+  .padding(@i, @v);
+  .margin(@i, @v);
+  .margin(@i, -1 * @v, ~'-n');
+  .generate-layout2(@m, (@i + 1));
+}
+
+// .media {
+//   display: flex;
+//   align-items: flex-start;
+// }
+
+// .media-body {
+//   flex: 1;
+// }
+
+// .block {
+//   display: block !important;
+// }
+
+// .row-bg {
+//   background-color: #fafafa;
+// }
