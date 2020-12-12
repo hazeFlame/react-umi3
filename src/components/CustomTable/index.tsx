@@ -1,10 +1,13 @@
-import { INIT_PARAMS } from "@/constants"
-import numeralFormat from "@/utils/numeralFormat"
-import ProTable from "@ant-design/pro-table"
 import React, { FC, ReactNode } from "react"
-import { mapValues, pickBy, trim } from "lodash"
+import ProTable from "@ant-design/pro-table"
 import { Button } from "antd"
+
+import { mapValues, pickBy, trim } from "lodash"
 import { useLocation, history } from "umi"
+// import numeralFormat from "@/utils/numeralFormat"
+import moment from "moment"
+import { INIT_PARAMS } from "@/constants"
+import { getUUID } from "@/utils/utils"
 
 interface ICustomProps { 
   loading: boolean
@@ -14,9 +17,25 @@ interface ICustomProps {
   showTotal?: ReactNode
   searchNode?: any,
   onRow?: any
+  search?: boolean
+  dateField?: string
+  startDateField?: string
+  endDateField?: string
 }
 
-const CustomTable: FC<ICustomProps> = ({ loading, onRow, columns, dataSource, total, showTotal, searchNode }) => {
+const CustomTable: FC<ICustomProps> = ({ 
+  loading, 
+  onRow, 
+  columns, 
+  dataSource, 
+  total, 
+  showTotal, 
+  searchNode, 
+  search = true,
+  dateField,
+  startDateField,
+  endDateField
+}) => {
   const location: any = useLocation()
   
   return (
@@ -47,7 +66,7 @@ const CustomTable: FC<ICustomProps> = ({ loading, onRow, columns, dataSource, to
           })
         }
       }}
-      search={{
+      search={search ? {
         labelWidth: 'auto',
         defaultCollapsed: false,
         optionRender: (_, { form }) => [
@@ -56,11 +75,22 @@ const CustomTable: FC<ICustomProps> = ({ loading, onRow, columns, dataSource, to
             key="search"
             type="primary"
             onClick={() => {
+              let searchQuery = {}
+              if (dateField && startDateField && endDateField) {
+                searchQuery = {
+                  ...form?.getFieldsValue(),
+                  [startDateField]: form?.getFieldValue(dateField) && moment(form?.getFieldValue(dateField)[0]).format('YYYY-MM-DD'),
+                  [endDateField]: form?.getFieldValue(dateField) && moment(form?.getFieldValue(dateField)[1]).format('YYYY-MM-DD'),
+                }
+              } else {
+                searchQuery = form?.getFieldsValue()
+              }
+
               history.push({
                 pathname: location.pathname,
                 query: {
-                  page: 1,
-                  ...mapValues(pickBy(form?.getFieldsValue(), (v: any) => !!v), v => trim(v)),
+                  uuid: getUUID(),
+                  ...mapValues(pickBy(searchQuery, (v: any) => !!v), (v: any) => trim(v)),
                 }
               })
             }}
@@ -70,7 +100,12 @@ const CustomTable: FC<ICustomProps> = ({ loading, onRow, columns, dataSource, to
           <Button
             key="rest"
             onClick={async () => {
-              await history.push(location.pathname)
+              await history.replace({
+                pathname: location.pathname,
+                query: {
+                  uuid: getUUID()
+                }
+              })
               setTimeout(() => form?.resetFields(), 0)
             }}
           >
@@ -78,7 +113,7 @@ const CustomTable: FC<ICustomProps> = ({ loading, onRow, columns, dataSource, to
           </Button>,
           <Button key="out">导出</Button>,
         ],
-      }}
+      } : false}
     />
   )
 }
