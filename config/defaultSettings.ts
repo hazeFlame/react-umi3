@@ -5,7 +5,7 @@ type DefaultSettings = ProSettings & {
 };
 
 const proSettings: DefaultSettings = {
-  title: '惠捷智运',
+  title: 'title',
   navTheme: 'dark',
   primaryColor: '#2e6098',
   layout: 'side',
